@@ -1,0 +1,207 @@
+* {
+   box-sizing: border-box;
+}
+
+:root {
+   --p1: #FF510D;
+   --p2: #FF9000;
+   --s1: #00A0FF;
+   --s2: #1B7AB3;
+   --bl: #070504;
+   --wt: #f2f2f2;
+}
+
+html {
+   font-size: 10px;
+   background-color: var(--bl);
+}
+
+h1 {
+   font-family: 'Josefin Sans', sans-serif;
+   font-weight: 600;
+   font-size: 6rem;
+   text-align: center;
+   color: var(--p1);
+}
+
+h2 {
+   font-family: 'Josefin Sans', sans-serif;
+   font-weight: 600;
+   font-size: 3.25rem;
+   color: var(--wt);
+   text-align: center;
+}
+
+h3 {
+   font-family: 'Josefin Sans', sans-serif;
+   font-weight: 600;
+   font-size: 2.75rem !important;
+   color: var(--bl);
+   text-align: left;
+   margin-bottom: 1rem;
+}
+
+p {
+   font-family: 'Source Code Pro', monospace;
+   color: var(--bl);
+   font-size: 1.5rem;
+   margin-bottom: 1rem;
+}
+
+
+/***************** HEADER *****************/
+#logo {
+   padding: 1rem;
+}
+
+.fa-thermometer-half {
+   color: var(--wt);
+}
+
+#app {
+   color: var(--p2);
+   padding: 1.5rem
+}
+
+/***************** MAIN *****************/
+#jumbotron {
+   background: url(../images/kumiko-shimizu-lNxMcE8mvIM-unsplash.jpg);
+   background-size: cover;
+   background-repeat: no-repeat;
+   background-position: bottom center;
+   
+}
+
+#search {
+   height: 30rem;
+   display: grid;
+   grid-template-columns: 40% 20%;
+   justify-content: center;
+   align-content: center;
+}
+
+#search h2 {
+   grid-area: 1 / 1 / 2 / 3;
+   margin-bottom: 4rem;
+   color: var(--p2);
+   /* background-color: var(--bl); */
+   padding: 1.5rem;
+   border-radius: 1rem;
+   /* opacity: 0.5; */
+}
+
+#search-city {
+   font-family: 'Source Code Pro', monospace;
+   font-weight: 600;
+   font-size: 3rem;
+   height: 9rem;
+   width: 100%;
+   padding: 2rem;
+   background-color: var(--wt);
+   border: none;
+   border-top-left-radius: 1rem;
+   border-bottom-left-radius: 1rem;
+   opacity: 0.8;
+}
+
+#search-text::placeholder {
+   color: var(--s2);
+}
+
+#search-button {
+   font-family: 'Josefin Sans', sans-serif;
+   font-weight: 600;
+   font-size: 4rem;
+   color: var(--wt);
+   height: 9rem;
+   border: none;
+   background-color: var(--p2);
+   border-top-right-radius: 1rem;
+   border-bottom-right-radius: 1rem;
+   /* opacity: 0.8; */
+}
+
+input {
+   width: 100%;
+   height: 100%;
+}
+
+/***************** ALL-INFO *****************/
+#all-info {
+   padding-bottom: 5rem;
+}
+
+#forecast-5day {
+   height: 25rem;
+}
+
+#prev-searches {
+   background-color: rgba(219, 201, 197, 0.5);
+   border-radius: 2rem;
+   padding: 2rem;
+}
+
+#prev-city{
+   height: 100%;
+   display: grid;
+   grid-template-rows: repeat(1, 20rem) ;
+   grid-template-columns: repeat(auto-fit, minmax(38rem, 1fr));
+   grid-gap: 2rem;
+   margin-right: 2rem;
+   margin-left: 2rem;
+}
+
+
+/***************** FORECAST 5 DAY *****************/
+#forecast {
+   background-color: rgba(219, 201, 197, 0.5);
+   border-radius: 2rem;
+   height: auto;
+   margin: 2rem;
+   padding: 2rem;   
+}
+
+.forecast-name {
+   text-align: center;
+   margin-bottom: 2rem;
+}
+
+#forecast-5days {
+   display: grid;
+   grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+   grid-gap: 2rem;
+}
+
+.day {
+   height: auto;
+   background-color: var(--s2);
+   padding: 2rem;
+   border-radius: 1rem;
+   
+}
+
+.day p {
+   color: var(--wt);
+}
+
+/***************** WEATHER *****************/
+#current-weather {
+   background-color: rgba(219, 201, 197, 0.5);
+   border-radius: 2rem;
+   padding: 2rem;
+}
+#current-weather p {
+   margin-bottom: 1rem;
+}
+
+.curr-weather-name {
+   font-size: 3rem;
+   margin-bottom: 2rem;
+}
+
+
+/***************** FONTS *****************/
+/* 
+font-family: 'Josefin Sans', sans-serif;
+font-family: 'Source Code Pro', monospace;
+*/

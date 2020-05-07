@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;600&family=Source+Code+Pro&display=swap" rel="stylesheet">
+   <link rel="stylesheet" href="./css/reset.css">
+   <link rel="stylesheet" href="./css/style.css">
+   <title>Weather App</title>
+</head>
+<body>
+   <header>
+      <h1 id="logo">weather <i class="fas fa-thermometer-half"></i><span id="app">APP</span|></h1>
+      </header>
+
+      <div id="jumbotron">
+         <main id="search">
+            <h2>Live Weather Forecast fo</i>r Any Location</h2>
+            <input id="search-city" type="text" class="form-control" placeholder="Dallas">
+            <button id="search-button">search</button>
+         </main>
+         
+         <!-- Weather Data goes here -->
+         <section id="all-info">
+            <!-- 5 Day Forecast -->
+            <div id="forecast"></div>
+            <div id="prev-city">
+               <!-- Local Storage, recording the last visited cities -->
+               <div id="prev-searches"></div>
+               <!-- Current weather -->
+               <div id="current-weather"></div>
+            </div>
+         </section>
+      </div>
+      
+      <footer>
+         <p>powered by OpenWeatherMap.org</p>
+         
+      </footer>
+      
+      <script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
+      <script src="https://kit.fontawesome.com/db9f7000a0.js" crossorigin="anonymous"></script>
+      <script src="./javascript/script.js"></script>
+</body>
+</html>
