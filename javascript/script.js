@@ -1,8 +1,8 @@
-$(document).ready(function () {
+$(document).ready(function() {
    
-   function chooseCity(e) {
+   function chooseCity() {
       var city = $("#search-city").val();
-
+      
       // Empties the Current Weather box and not append below it
       $("#current-weather").empty();
       $("#forecast").empty();
@@ -17,48 +17,47 @@ $(document).ready(function () {
             method: "GET"
          }).then(function (forecast) {    
             var forecastName = $("<h3 class='forecast-name'>").text(forecast.city.name + " - 5 Day Forecast");
-            // $("#forecast").append(forecastName);
-            
             var forecast5Days = $("<div id='forecast-5days'>");
             $("#forecast").append(forecastName, forecast5Days);
-
+            
             var forecastDay1 = $("<div class='day'>");
             var forecastDay2 = $("<div class='day'>");
             var forecastDay3 = $("<div class='day'>");
             var forecastDay4 = $("<div class='day'>");
             var forecastDay5 = $("<div class='day'>");
             forecast5Days.append(forecastDay1, forecastDay2, forecastDay3, forecastDay4, forecastDay5);
-
-            var forecastDayDate = $("<p class='forecast-day-max-temp'>'").text(forecast.list[7].dt_txt);
-            var forecastDayMaxTemp = $("<p class='forecast-day-max-temp'>'").text("Max: " + forecast.list[7].main.temp + "F");
-            var forecastDayMinTemp = $("<p class='forecast-day-max-temp'>'").text("Min: " + forecast.list[2].main.temp + "F");
-            var forecastDayHumidity = $("<p class='forecast-day-max-temp'>'").text("Humidity: " + forecast.list[7].main.humidity + "%");            
+            
+            var forecastDayDate = $("<p class='each-date'>'").text(moment().add(1, 'day').format('ddd, MM/DD/YY'));
+            var forecastDayMaxTemp = $("<p class='each-day'>'").text("Max: " + forecast.list[7].main.temp + "F");
+            var forecastDayMinTemp = $("<p class='each-day'>'").text("Min: " + forecast.list[7].main.temp + "F");
+            var forecastDayHumidity = $("<p class='each-day'>'").text("Humidity: " + forecast.list[7].main.humidity + "%");            
             forecastDay1.append(forecastDayDate, forecastDayMaxTemp, forecastDayMinTemp, forecastDayHumidity);
-
-            var forecastDayDate = $("<p class='forecast-day-max-temp'>'").text(forecast.list[15].dt_txt);
-            var forecastDayMaxTemp = $("<p class='forecast-day-max-temp'>'").text("Max: " + forecast.list[15].main.temp + "F");
-            var forecastDayMinTemp = $("<p class='forecast-day-max-temp'>'").text("Min: " + forecast.list[10].main.temp + "F");
-            var forecastDayHumidity = $("<p class='forecast-day-max-temp'>'").text("Humidity: " + forecast.list[15].main.humidity + "%");
+            
+            var forecastDayDate = $("<p class='each-date'>'").text(moment().add(2, 'day').format('ddd, MM/DD/YY'));
+            var forecastDayMaxTemp = $("<p class='each-day'>'").text("Max: " + forecast.list[15].main.temp + "F");
+            var forecastDayMinTemp = $("<p class='each-day'>'").text("Min: " + forecast.list[15].main.temp + "F");
+            var forecastDayHumidity = $("<p class='each-day'>'").text("Humidity: " + forecast.list[15].main.humidity + "%");
             forecastDay2.append(forecastDayDate, forecastDayMaxTemp, forecastDayMinTemp, forecastDayHumidity);
             
-            var forecastDayDate = $("<p class='forecast-day-max-temp'>'").text(forecast.list[23].dt_txt);
-            var forecastDayMaxTemp = $("<p class='forecast-day-max-temp'>'").text("Max: " + forecast.list[23].main.temp + "F");
-            var forecastDayMinTemp = $("<p class='forecast-day-max-temp'>'").text("Min: " + forecast.list[18].main.temp + "F");
-            var forecastDayHumidity = $("<p class='forecast-day-max-temp'>'").text("Humidity: " + forecast.list[23].main.humidity + "%");
+            var forecastDayDate = $("<p class='each-date'>'").text(moment().add(3, 'day').format('ddd, MM/DD/YY'));
+            var forecastDayMaxTemp = $("<p class='each-day'>'").text("Max: " + forecast.list[23].main.temp + "F");
+            var forecastDayMinTemp = $("<p class='each-day'>'").text("Min: " + forecast.list[23].main.temp + "F");
+            var forecastDayHumidity = $("<p class='each-day'>'").text("Humidity: " + forecast.list[23].main.humidity + "%");
             forecastDay3.append(forecastDayDate, forecastDayMaxTemp, forecastDayMinTemp, forecastDayHumidity);
-
-            var forecastDayDate = $("<p class='forecast-day-max-temp'>'").text(forecast.list[31].dt_txt);
-            var forecastDayMaxTemp = $("<p class='forecast-day-max-temp'>'").text("Max: " + forecast.list[31].main.temp + "F");
-            var forecastDayMinTemp = $("<p class='forecast-day-max-temp'>'").text("Min: " + forecast.list[26].main.temp + "F");
-            var forecastDayHumidity = $("<p class='forecast-day-max-temp'>'").text("Humidity: " + forecast.list[31].main.humidity + "%");            
+            
+            var forecastDayDate = $("<p class='each-date'>'").text(moment().add(4, 'day').format('ddd, MM/DD/YY'));
+            var forecastDayMaxTemp = $("<p class='each-day'>'").text("Max: " + forecast.list[31].main.temp + "F");
+            var forecastDayMinTemp = $("<p class='each-day'>'").text("Min: " + forecast.list[31].main.temp + "F");
+            var forecastDayHumidity = $("<p class='each-day'>'").text("Humidity: " + forecast.list[31].main.humidity + "%");            
             forecastDay4.append(forecastDayDate, forecastDayMaxTemp, forecastDayMinTemp, forecastDayHumidity);
-
-            var forecastDayDate = $("<p class='forecast-day-max-temp'>'").text(forecast.list[39].dt_txt);
-            var forecastDayMaxTemp = $("<p class='forecast-day-max-temp'>'").text("Max: " + forecast.list[39].main.temp + "F");
-            var forecastDayMinTemp = $("<p class='forecast-day-max-temp'>'").text("Min: " + forecast.list[34].main.temp + "F");
-            var forecastDayHumidity = $("<p class='forecast-day-max-temp'>'").text("Humidity: " + forecast.list[39].main.humidity + "%");
+            
+            var forecastDayDate = $("<p class='each-date'>'").text(moment().add(5, 'day').format('ddd, MM/DD/YY'));
+            var forecastDayMaxTemp = $("<p class='each-day'>'").text("Max: " + forecast.list[39].main.temp + "F");
+            var forecastDayMinTemp = $("<p class='each-day'>'").text("Min: " + forecast.list[39].main.temp + "F");
+            var forecastDayHumidity = $("<p class='each-day'>'").text("Humidity: " + forecast.list[39].main.humidity + "%");
             forecastDay5.append(forecastDayDate, forecastDayMaxTemp, forecastDayMinTemp, forecastDayHumidity);
-
+            
+            console.log("test");
             
             console.log(forecast);
          });
@@ -77,14 +76,6 @@ $(document).ready(function () {
             $("#current-weather").append(currWeatherName, currWeatherTemp, currWeatherFeel, currWeatherHumid, currWeatherWind);
          });
 
-         // Local Storage
-         var cityData = localStorage.getItem(value);   
-
-         console.log(localStorage.getItem(value));
-         
-         var prevCity = $("<p class='city-data'>").text(cityData).val();
-            console.log("test - localStorage");
-            console.log(localStorage);
          
       } else {
          // In red color, ask the user to try again
@@ -93,35 +84,37 @@ $(document).ready(function () {
       };
    }
    
-   
-   
+   // Local Storage
 
-   
-   // Search button click
-   $("#search-button").on("click", function () {
-      var buttonClick = this.id;
-      var textAreaValue = $(this).siblings('#search-city').val();
-      localStorage.setItem(buttonClick, textAreaValue);
+   // var cityData = ["Dallas", "Tokyo"];
+   // var citySetItem = localStorage.setItem("cityData", cityData);
 
-      getItemCity();
-      return chooseCity();
-   });
+   // var cityGetItem = localStorage.getItem(citySetItem);
+
+   // console.log(cityData);
+   
+   // for (let i = 0; i < 5; i++) {
+
+   //    $("#prev-searches").append("<p>" + cityData[i]);
+   // }
+   
+   
    
    // Enter keypress
-   $("#search-city").keypress(function(event) {
+   $("#form-submit").keypress("submit", function (event) {
       if (event.which === 13) {
-         return chooseCity();
+         event.preventDefault()
+         chooseCity();
       };
    });
-   
+
+   $("#form-submit").on("click", function (event) {
+         event.preventDefault()
+         chooseCity();
+   });
 });
+   
 
-
-// function clearWeather() {
-   //    $("#search-city").val("");
-   //    CurrWeatherName.val("");
-   // };
-   // clearWeather();
    
    // unsplash API 
    // r60tWdxsPJXnDDxzIGlxeQDB_Q4WocIaJvb0t8pD9VI

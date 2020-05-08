@@ -3,7 +3,7 @@
 <head>
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;600&family=Source+Code+Pro&display=swap" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;600&family=Quicksand:wght@500&display=swap" rel="stylesheet">
    <link rel="stylesheet" href="./css/reset.css">
    <link rel="stylesheet" href="./css/style.css">
    <title>Weather App</title>
@@ -16,8 +16,10 @@
       <div id="jumbotron">
          <main id="search">
             <h2>Live Weather Forecast fo</i>r Any Location</h2>
-            <input id="search-city" type="text" class="form-control" placeholder="Dallas">
-            <button id="search-button">search</button>
+            <form id="form-submit" action="">
+               <input id="search-city" type="text" class="form-control" placeholder="Dallas">
+               <button id="search-button" type="submit">search</button>
+            </form>
          </main>
          
          <!-- Weather Data goes here -->
@@ -35,11 +37,13 @@
       
       <footer>
          <p>powered by OpenWeatherMap.org</p>
-         
+         <p>©2020 weather|APP</p>
+         <p>designed by Jeuel</p>
       </footer>
       
       <script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
       <script src="https://kit.fontawesome.com/db9f7000a0.js" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
       <script src="./javascript/script.js"></script>
 </body>
 </html>
