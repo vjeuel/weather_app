@@ -1,7 +1,7 @@
 $(document).ready(function () {
    
-   function chooseCity() {
-      var city = $("#search-city").val();
+   function chooseCity(city) {
+      //var city = $("#search-city").val();
       
       // Empties the Current Weather box and not append below it
       $("#current-weather").empty();
@@ -61,9 +61,6 @@ $(document).ready(function () {
             var forecastDayMinTemp = $("<p class='each-day'>'").text("Min: " + forecast.list[39].main.temp + "F");
             var forecastDayHumidity = $("<p class='each-day'>'").text("Humidity: " + forecast.list[39].main.humidity + "%");
             forecastDay5.append(forecastDayDate, forecastDayMaxTemp, forecastDayMinTemp, forecastDayHumidity, forecastDayIcon);
-            
-            
-            console.log(forecast);
          });
          
          
@@ -87,10 +84,6 @@ $(document).ready(function () {
             $("#current-weather").append(currentIcon);
             var currWeatherIcon = $("<img class='current-weather-icon' src='http://openweathermap.org/img/wn/" + weather.weather[0].icon + "@2x.png'>");
             $("#current-icon").append(currWeatherIcon);
-            console.log(weather);
-            
-            console.log(weather.weather[0].icon);
-            console.log(weather.weather[0].description);
 
             // weather.weather[0].description = "clear sky";
             // weather.weather[0].description = "scattered clouds";
@@ -127,40 +120,78 @@ $(document).ready(function () {
    }
 
    // Local Storage
+   if (localStorage.getItem('cities')) {
+      var indexCity = (JSON.parse(localStorage.getItem('cities')).length -1)
+      chooseCity(JSON.parse(localStorage.getItem('cities'))[indexCity])
+      for (let i = 0; i < 5; i++) {
+      var searchedCity = $('<button>')
+      searchedCity.text(JSON.parse(localStorage.getItem('cities'))[i])         
+      $('#prev-searches').append(searchedCity)
+      };
+   };
 
-   localStorage.getItem
-   
-   // Enter keypress
-   var cityValueArr2 = [];
-   
+
    $("#form-submit").on("submit", function (event) {
       event.preventDefault()
-   
-      if (window.localStorage.getItem("cityValueArr") === null) {
-         var cityValue = $("#search-city").val();
-         var cityValueArr = [cityValue];
-         
-         var cityValueString = JSON.stringify(cityValueArr);
-         window.localStorage.setItem("cityValueArr", cityValueString);
+      
+      var cityArr;
+      if (localStorage.getItem('cities')) {
+         cityArr = JSON.parse(localStorage.getItem('cities'))
       } else {
-         window.localStorage.getItem("cityValueArr");
-         var cityValue2 = $("#search-city").val();
-         
-         cityValueArr2.push(cityValue2);
-         
-         // var cityValueString2 = JSON.stringify(cityValueArr2);
-         window.localStorage.setItem("cityValueArr", cityValueArr2);
-         
-         
-         // var cityValueParse = JSON.parse(cityValueArr);
-         // window.localStorage.setItem("cityValueArr", cityValueParse);
+         cityArr = []
+      }
+      var city = $("#search-city").val();
+      cityArr.push(city)
+      //rendering upon button click
+      /*for (let i = 0; i < 5; i++) {
+         console.log(cityArr[i]);
+         var newEl = $('<button>')
+         newEl.text(cityArr[i])         
+         $('#prev-searches').append(newEl)
+      }*/
+      
+      localStorage.setItem('cities', JSON.stringify(cityArr))
+      
+      
+      /*if (window.localStorage.getItem("cityArr") === null) {
+         var city = $("#search-city").val();
+         var cityArr = [city];
+         window.localStorage.setItem("cityArr", JSON.stringify(cityArr));
+      } else {
+         var city = $("#search-city").val()
+         window.localStorage.setItem(cityArr, JSON.stringify(city));
 
-         // console.log(cityValueArr);
-         
-         $("#prev-searches").prepend("<p>").text(cityValueArr2);
-      };
-      chooseCity();
+         var cityGet = window.localStorage.getItem(cityArr);
+
+         cityArr.push(city);
+
+         window.localStorage.getItem("city", JSON.parse(cityGet))
+         // window.localStorage.getItem("cityValueArr");
+         // var cityValue2 = $("#search-city").val();
+         // cityValueArr2.push(cityValue2);
+         // window.localStorage.setItem("cityValueArr", JSON.stringify(cityValueArr2));
+         // window.localStorage.getItem("cityValueArr", JSON.parse(cityValueArr2));
+         $("#prev-searches").html("<p>" + city);
+      };*/
+      //console.log(city);
+      
+      chooseCity(city);
    });
+   //$('#search-button').click(chooseCity());
+//    var testObject = ["apple"];
+
+//    // Put the object into storage
+// localStorage.setItem('testObject', JSON.stringify(testObject));
+
+// // Retrieve the object from storage
+// var retrievedObject = localStorage.getItem('testObject');
+// testObject.push("rat", "mouse")
+// localStorage.getItem('testObject', JSON.parse(retrievedObject));
+// // console.log('retrievedObject: ', JSON.parse(retrievedObject));
+// console.log(testObject[0]);
+   
+// $("#prev-searches").prepend("<p>" + testObject);
+   
 });
    
 
