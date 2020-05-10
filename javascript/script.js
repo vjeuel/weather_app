@@ -62,7 +62,6 @@ $(document).ready(function () {
             var forecastDayHumidity = $("<p class='each-day'>'").text("Humidity: " + forecast.list[39].main.humidity + "%");
             forecastDay5.append(forecastDayDate, forecastDayMaxTemp, forecastDayMinTemp, forecastDayHumidity, forecastDayIcon);
             
-            console.log("test");
             
             console.log(forecast);
          });
@@ -73,39 +72,93 @@ $(document).ready(function () {
             url: "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=68d6dbd51f19629214123398c2229b80",
             method: "GET"
          }).then(function (weather) {
-            $("#current-weather-name").text(weather.name + " - Current Weather");
+            var currentWeatherName = $("<h3 id='current-weather-name'>").text(weather.name + " - Current Weather");
+            $("#current-weather").append(currentWeatherName);
             
+            var currentData = $("<div id='current-data'>");
+            $("#current-weather").append(currentData);
             var currWeatherTemp = $("<p class='curr-weather-temp'>").text("Current Temperature: " + weather.main.temp + "F");
             var currWeatherFeel = $("<p class='curr-weather-temp'>").text("Feels like: " + weather.main.feels_like + "F");
             var currWeatherHumid = $("<p class='curr-weather-hum'>").text("Current Humidity: " + weather.main.humidity + "%");
             var currWeatherWind = $("<p class='curr-weather-wind'>").text("Current Wind Speed: " + weather.wind.speed + "m/h");
             $("#current-data").append(currWeatherTemp, currWeatherFeel, currWeatherHumid, currWeatherWind);
             
-            var currWeatherIcon = $("<img class='weather-icon' src='http://openweathermap.org/img/wn/" + weather.weather[0].icon + "@2x.png'>");
+            var currentIcon = $("<div id='current-icon'>");
+            $("#current-weather").append(currentIcon);
+            var currWeatherIcon = $("<img class='current-weather-icon' src='http://openweathermap.org/img/wn/" + weather.weather[0].icon + "@2x.png'>");
             $("#current-icon").append(currWeatherIcon);
             console.log(weather);
-            console.log(currWeatherTemp);
+            
+            console.log(weather.weather[0].icon);
+            console.log(weather.weather[0].description);
+
+            // weather.weather[0].description = "clear sky";
+            // weather.weather[0].description = "scattered clouds";
+            // weather.weather[0].description = "shower rain";
+            // weather.weather[0].description = "thunderstorm";
+            // weather.weather[0].description = "snow";
+            // weather.weather[0].description = "mist";
+
+            if (weather.weather[0].description === "clear sky" || weather.weather[0].description === "few clouds") {
+               $("#jumbotron").attr("style", "background: url(./images/sunny.jpg); background-size: cover; background-repeat: no-repeat; background-position: center center");
+            } else if (weather.weather[0].description === "scattered clouds" || weather.weather[0].description === "broken clouds") {
+               $("#jumbotron").attr("style", "background: url(./images/cloudy.jpg); background-size: cover; background-repeat: no-repeat; background-position: center center");
+            } else if (weather.weather[0].description === "shower rain" || weather.weather[0].description === "rain") {
+               $("#jumbotron").attr("style", "background: url(./images/rainy.jpg); background-size: cover; background-repeat: no-repeat; background-position: center center");
+            } else if (weather.weather[0].description === "thunderstorm") {
+               $("#jumbotron").attr("style", "background: url(./images/stormy.jpg); background-size: cover; background-repeat: no-repeat; background-position: center center");
+            } else if (weather.weather[0].description === "snow") {
+               $("#jumbotron").attr("style", "background: url(./images/snowy.jpg); background-size: cover; background-repeat: no-repeat; background-position: center center");
+            } else if (weather.weather[0].description === "mist") {
+               $("#jumbotron").attr("style", "background: url(./images/misty.jpg); background-size: cover; background-repeat: no-repeat; background-position: center center");
+            }
          });
-         
-         
+
+
+
       } else {
          // In red color, ask the user to try again
          $("#search-city").attr("placeholder", "type a valid city name");
          $("#search-city").attr("style", "color: var(--p1); font-size: 2.5rem");
       };
+
+      
+
    }
+
+   // Local Storage
+
+   localStorage.getItem
    
    // Enter keypress
-   $("#form-submit").keypress("submit", function (event) {
-      if (event.which === 13) {
-         event.preventDefault()
-         chooseCity();
-      };
-   });
+   $("#form-submit").on("submit", function (event) {
+      event.preventDefault()
+   
+      if (window.localStorage.getItem("cityValueArr") === null) {
+         var cityValue = $("#search-city").val();
+         var cityValueArr = [cityValue];
+         
+         var cityValueString = JSON.stringify(cityValueArr);
+         window.localStorage.setItem("cityValueArr", cityValueString);
+      } else {
+         window.localStorage.getItem("cityValueArr");
+         var cityValue2 = $("#search-city").val();
+         var cityValueArr2 = [];
+         
+         cityValueArr2.push(cityValue2);
+         
+         var cityValueString2 = JSON.stringify(cityValueArr2);
+         window.localStorage.setItem("cityValueArr", cityValueString2);
+         
+         
+         // var cityValueParse = JSON.parse(cityValueArr);
+         // window.localStorage.setItem("cityValueArr", cityValueParse);
 
-   $("#search-button").on("click", function (event) {
-         event.preventDefault()
-         chooseCity();
+         // console.log(cityValueArr);
+         
+         $("#prev-searches").append("<p>").text(cityValueArr2);
+      };
+      chooseCity();
    });
 });
    
