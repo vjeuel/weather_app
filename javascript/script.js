@@ -131,6 +131,8 @@ $(document).ready(function () {
    localStorage.getItem
    
    // Enter keypress
+   var cityValueArr2 = [];
+   
    $("#form-submit").on("submit", function (event) {
       event.preventDefault()
    
@@ -143,12 +145,11 @@ $(document).ready(function () {
       } else {
          window.localStorage.getItem("cityValueArr");
          var cityValue2 = $("#search-city").val();
-         var cityValueArr2 = [];
          
          cityValueArr2.push(cityValue2);
          
-         var cityValueString2 = JSON.stringify(cityValueArr2);
-         window.localStorage.setItem("cityValueArr", cityValueString2);
+         // var cityValueString2 = JSON.stringify(cityValueArr2);
+         window.localStorage.setItem("cityValueArr", cityValueArr2);
          
          
          // var cityValueParse = JSON.parse(cityValueArr);
@@ -156,7 +157,7 @@ $(document).ready(function () {
 
          // console.log(cityValueArr);
          
-         $("#prev-searches").append("<p>").text(cityValueArr2);
+         $("#prev-searches").prepend("<p>").text(cityValueArr2);
       };
       chooseCity();
    });

@@ -158,14 +158,6 @@ input {
    height: 25rem;
 }
 
-#prev-searches {
-   background-color: rgba(219, 201, 197, 0.5);
-   border-radius: 2rem;
-   padding: 2rem;
-   display: grid;
-   grid-template-columns: 1fr, 1fr;
-}
-
 #prev-city{
    height: 100%;
    display: grid;
@@ -174,6 +166,14 @@ input {
    grid-gap: 2rem;
    margin-right: 2rem;
    margin-left: 2rem;
+}
+
+#prev-searches {
+   background-color: rgba(219, 201, 197, 0.5);
+   border-radius: 2rem;
+   padding: 2rem;
+   display: grid;
+   grid-template-columns: 1fr, 1fr;
 }
 
 
@@ -260,6 +260,79 @@ footer p {
    color: var(--wt);
    text-align: center;
 }
+
+
+/***************** MEDIA QUERIES - SCREEN SIZES *****************/ 
+@media (max-width: 768px) {
+   #search {
+      height: 40rem;
+   }
+   
+   #form-submit {
+      width: 90%;
+         grid-template-columns: none;
+         grid-template-rows: 9rem 9rem;
+         grid-gap: 2rem;
+         justify-items: center;
+         box-shadow: none;
+
+   }
+
+   #search-city {
+      text-align: center;
+      width: 100%;
+      border-radius: 1rem;
+      box-shadow: -2px -2px 8px var(--wt),
+                  2px 2px 8px var(--bl );
+   }
+
+   .form-control::placeholder {
+      text-align: center;
+      font-size: 2rem;
+   }
+   
+   #search-button {
+      width: 60%;
+      border-radius: 1rem;
+      box-shadow: -2px -2px 8px var(--wt),
+                  2px 2px 8px var(--bl);
+   }
+}
+
+
+@media (max-width: 576px) {
+   #prev-city{
+      grid-template-rows: repeat(2, auto) ;
+      grid-template-columns: repeat(auto-fit, minmax(27rem, 1fr));
+   }
+
+   #current-weather {
+   grid-template-rows: repeat(3, auto);
+   grid-template-columns: none;
+   }
+
+   #current-icon {
+      grid-area: unset;
+      display: grid;
+   }
+
+   .current-weather-icon {
+      justify-self: center;
+   }
+   
+   footer {
+      grid-template-columns: unset;
+      grid-template-rows: repeat(3, 1fr);
+      grid-gap: 2rem;
+      margin-bottom: 2rem;
+   }
+
+   footer p {
+      color: var(--wt);
+      text-align: center;
+   }
+}
+
 
 /***************** FONTS *****************/
 /* 
