@@ -82,51 +82,65 @@ $(document).ready(function () {
             url: "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=20ee635fd9d6fa368c986732d1acc110",
             method: "GET"
          }).then(function (weather) {
+            // $.ajax({
+            //    url: "http://api.openweathermap.org/data/2.5/uvi/forecast?appid=16cc9a2b8c5cd910ce823125d38d81e0&lat=" + weather.coord.lat + "&lon=" + weather.coord.lon + "&cnt=1",
+            //    method: "GET"
+            // }).then(function (uvi) {
+            //    var currWeatherUvi = $("<p class='curr-weather-uvi'>").text("UV index: " + uvi[0].value);
+            
             $.ajax({
-               url: "https://api.openweathermap.org/data/2.5/uvi/forecast?appid=16cc9a2b8c5cd910ce823125d38d81e0&lat=" + weather.coord.lat + "&lon=" + weather.coord.lon + "&cnt=1",
-               method: "GET"
-            }).then(function (uvi) {
-               var currWeatherUvi = $("<p class='curr-weather-uvi'>").text("UV index: " + uvi[0].value);
-
-               var currentWeather = $("#current-weather");
-               var currentWeatherName = $("<h3 id='current-weather-name'>").text(weather.name + " - Current Weather");
-               currentWeather.append(currentWeatherName);
+               type: 'GET',
+               dataType: 'json',
+               beforeSend: function(request) {
+                  request.setRequestHeader('x-access-token', '4fba06ebc4f0e6675b53fe6082ec4871');
+               },
+               url: "https://api.openuv.io/api/v1/uv?lat=" + weather.coord.lat + "&lng=" + weather.coord.lon,
+               success: function (uvi) {
+                  var currWeatherUvi = $("<p class='curr-weather-uvi'>").text("UV index: " + uvi.result.uv_max);
+                  //handle successful response
+                  console.log(uvi);
                
-               var currentData = $("<div id='current-data'>");
-               currentWeather.append(currentData);
-               var currWeatherTemp = $("<p class='curr-weather-temp'>").text("Current Temperature: " + weather.main.temp + "F");
-               var currWeatherFeel = $("<p class='curr-weather-temp'>").text("Feels like: " + weather.main.feels_like + "F");
-               var currWeatherHumid = $("<p class='curr-weather-hum'>").text("Current Humidity: " + weather.main.humidity + "%");
-               var currWeatherWind = $("<p class='curr-weather-wind'>").text("Current Wind Speed: " + weather.wind.speed + "m/h");
-               currentData.append(currWeatherTemp, currWeatherFeel, currWeatherHumid, currWeatherWind, currWeatherUvi);
+                  var currentWeather = $("#current-weather");
+                  var currentWeatherName = $("<h3 id='current-weather-name'>").text(weather.name + " - Current Weather");
+                  currentWeather.append(currentWeatherName);
                
-               var currentIcon = $("<div id='current-icon'>");
-               currentWeather.append(currentIcon);
-               var currWeatherIcon = $("<img class='current-weather-icon' src='http://openweathermap.org/img/wn/" + weather.weather[0].icon + "@2x.png'>");
-               currentIcon.append(currWeatherIcon);
+                  var currentData = $("<div id='current-data'>");
+                  currentWeather.append(currentData);
+                  var currWeatherTemp = $("<p class='curr-weather-temp'>").text("Current Temperature: " + weather.main.temp + "F");
+                  var currWeatherFeel = $("<p class='curr-weather-temp'>").text("Feels like: " + weather.main.feels_like + "F");
+                  var currWeatherHumid = $("<p class='curr-weather-hum'>").text("Current Humidity: " + weather.main.humidity + "%");
+                  var currWeatherWind = $("<p class='curr-weather-wind'>").text("Current Wind Speed: " + weather.wind.speed + "m/h");
+                  currentData.append(currWeatherTemp, currWeatherFeel, currWeatherHumid, currWeatherWind, currWeatherUvi);
+               
+                  var currentIcon = $("<div id='current-icon'>");
+                  currentWeather.append(currentIcon);
+                  var currWeatherIcon = $("<img class='current-weather-icon' src='http://openweathermap.org/img/wn/" + weather.weather[0].icon + "@2x.png'>");
+                  currentIcon.append(currWeatherIcon);
 
-               // Just a tester to check the pictures changing accordingly to the weather
-               // weather.weather[0].description = "clear sky";
-               // weather.weather[0].description = "scattered clouds";
-               // weather.weather[0].description = "shower rain";
-               // weather.weather[0].description = "thunderstorm";
-               // weather.weather[0].description = "snow";
-               // weather.weather[0].description = "mist";
+                  // Just a tester to check the pictures changing accordingly to the weather
+                  // weather.weather[0].description = "clear sky";
+                  // weather.weather[0].description = "scattered clouds";
+                  // weather.weather[0].description = "shower rain";
+                  // weather.weather[0].description = "thunderstorm";
+                  // weather.weather[0].description = "snow";
+                  // weather.weather[0].description = "mist";
 
-               if (weather.weather[0].description === "clear sky" || weather.weather[0].description === "few clouds") {
-                  $("#jumbotron").attr("style", "background: url(./images/sunny.jpg); background-size: cover; background-repeat: no-repeat; background-position: center center");
-               } else if (weather.weather[0].description === "scattered clouds" || weather.weather[0].description === "broken clouds") {
-                  $("#jumbotron").attr("style", "background: url(./images/cloudy.jpg); background-size: cover; background-repeat: no-repeat; background-position: center center");
-               } else if (weather.weather[0].description === "shower rain" || weather.weather[0].description === "rain") {
-                  $("#jumbotron").attr("style", "background: url(./images/rainy.jpg); background-size: cover; background-repeat: no-repeat; background-position: center center");
-               } else if (weather.weather[0].description === "thunderstorm") {
-                  $("#jumbotron").attr("style", "background: url(./images/stormy.jpg); background-size: cover; background-repeat: no-repeat; background-position: center center");
-               } else if (weather.weather[0].description === "snow") {
-                  $("#jumbotron").attr("style", "background: url(./images/snowy.jpg); background-size: cover; background-repeat: no-repeat; background-position: center center");
-               } else if (weather.weather[0].description === "mist") {
-                  $("#jumbotron").attr("style", "background: url(./images/misty.jpg); background-size: cover; background-repeat: no-repeat; background-position: center center");
+                  if (weather.weather[0].description === "clear sky" || weather.weather[0].description === "few clouds") {
+                     $("#jumbotron").attr("style", "background: url(./images/sunny.jpg); background-size: cover; background-repeat: no-repeat; background-position: center center");
+                  } else if (weather.weather[0].description === "scattered clouds" || weather.weather[0].description === "broken clouds") {
+                     $("#jumbotron").attr("style", "background: url(./images/cloudy.jpg); background-size: cover; background-repeat: no-repeat; background-position: center center");
+                  } else if (weather.weather[0].description === "shower rain" || weather.weather[0].description === "rain") {
+                     $("#jumbotron").attr("style", "background: url(./images/rainy.jpg); background-size: cover; background-repeat: no-repeat; background-position: center center");
+                  } else if (weather.weather[0].description === "thunderstorm") {
+                     $("#jumbotron").attr("style", "background: url(./images/stormy.jpg); background-size: cover; background-repeat: no-repeat; background-position: center center");
+                  } else if (weather.weather[0].description === "snow") {
+                     $("#jumbotron").attr("style", "background: url(./images/snowy.jpg); background-size: cover; background-repeat: no-repeat; background-position: center center");
+                  } else if (weather.weather[0].description === "mist") {
+                     $("#jumbotron").attr("style", "background: url(./images/misty.jpg); background-size: cover; background-repeat: no-repeat; background-position: center center");
+                  }
+            
                }
-            });
+               });
          });
 
       } else {
