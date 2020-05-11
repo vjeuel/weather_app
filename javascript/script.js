@@ -82,11 +82,11 @@ $(document).ready(function () {
             url: "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=20ee635fd9d6fa368c986732d1acc110",
             method: "GET"
          }).then(function (weather) {
-            $.ajax({
-               url: "http://api.openweathermap.org/data/2.5/uvi/forecast?appid=16cc9a2b8c5cd910ce823125d38d81e0&lat=" + weather.coord.lat + "&lon=" + weather.coord.lon + "&cnt=1",
-               method: "GET"
-            }).then(function (uvi) {
-               var currWeatherUvi = $("<p class='curr-weather-uvi'>").text("UV index: " + uvi[0].value);
+            // $.ajax({
+            //    url: "http://api.openweathermap.org/data/2.5/uvi/forecast?appid=16cc9a2b8c5cd910ce823125d38d81e0&lat=" + weather.coord.lat + "&lon=" + weather.coord.lon + "&cnt=1",
+            //    method: "GET"
+            // }).then(function (uvi) {
+            //    var currWeatherUvi = $("<p class='curr-weather-uvi'>").text("UV index: " + uvi[0].value);
 
                var currentWeather = $("#current-weather");
                var currentWeatherName = $("<h3 id='current-weather-name'>").text(weather.name + " - Current Weather");
@@ -126,7 +126,7 @@ $(document).ready(function () {
                } else if (weather.weather[0].description === "mist") {
                   $("#jumbotron").attr("style", "background: url(./images/misty.jpg); background-size: cover; background-repeat: no-repeat; background-position: center center");
                }
-            });
+            // });
          });
 
       } else {
