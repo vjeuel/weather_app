@@ -27,18 +27,18 @@ $(document).ready(function () {
             var forecastDay5 = $("<div class='day'>");
             forecast5Days.append(forecastDay1, forecastDay2, forecastDay3, forecastDay4, forecastDay5);
             
-            // $.ajax({
-            //    url: "http://api.openweathermap.org/data/2.5/uvi/forecast?appid=68d6dbd51f19629214123398c2229b80&lat=" + forecast.city.coord.lat + "&lon=" + forecast.city.coord.lon + "&cnt=5",
-            //    method: "GET"
-            // }).then(function (uvi) {
-            //    var currentUvi = $("<div id='current-uvi'>");
-            //    $("#current-weather").append(currentUvi);
-            //    var currWeatherUvi1 = $("<p class='each-day'>").text("UV index: " + uvi[1].value);
-            //    var currWeatherUvi2 = $("<p class='each-day'>").text("UV index: " + uvi[2].value);
-            //    var currWeatherUvi3 = $("<p class='each-day'>").text("UV index: " + uvi[3].value);
-            //    var currWeatherUvi4 = $("<p class='each-day'>").text("UV index: " + uvi[4].value);
-            //    var currWeatherUvi5 = $("<p class='each-day'>").text("UV index: " + uvi[5].value);
-            //    forecastDay1.append(currWeatherUvi1);
+            $.ajax({
+               url: "http://api.openweathermap.org/data/2.5/uvi/forecast?appid=c7dbd0c9f757abb18bf14935c304ae8c&lat=" + forecast.city.coord.lat + "&lon=" + forecast.city.coord.lon + "&cnt=5",
+               method: "GET"
+            }).then(function (uvi) {
+               var currentUvi = $("<div id='current-uvi'>");
+               $("#current-weather").append(currentUvi);
+               var currWeatherUvi1 = $("<p class='each-day'>").text("UV index: " + uvi[1].value);
+               var currWeatherUvi2 = $("<p class='each-day'>").text("UV index: " + uvi[2].value);
+               var currWeatherUvi3 = $("<p class='each-day'>").text("UV index: " + uvi[3].value);
+               var currWeatherUvi4 = $("<p class='each-day'>").text("UV index: " + uvi[4].value);
+               var currWeatherUvi5 = $("<p class='each-day'>").text("UV index: " + uvi[5].value);
+               forecastDay1.append(currWeatherUvi1);
             
                var forecastDayDate = $("<p class='each-date'>'").text(moment().add(1, 'day').format('ddd, MM/DD/YY'));
                var forecastDayIcon = $("<img class='weather-icon' src='http://openweathermap.org/img/wn/" + forecast.list[7].weather[0].icon + "@2x.png'>");
@@ -75,14 +75,15 @@ $(document).ready(function () {
                var forecastDayHumidity = $("<p class='each-day'>'").text("Humidity: " + forecast.list[39].main.humidity + "%");
                forecastDay5.append(forecastDayDate, forecastDayMaxTemp, forecastDayMinTemp, forecastDayHumidity, currWeatherUvi5, forecastDayIcon);
             });
+         });
          
          // API connection for the Current Weather
          $.ajax({
-            url: "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=68d6dbd51f19629214123398c2229b80",
+            url: "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=20ee635fd9d6fa368c986732d1acc110",
             method: "GET"
          }).then(function (weather) {
             $.ajax({
-               url: "http://api.openweathermap.org/data/2.5/uvi/forecast?appid=20ee635fd9d6fa368c986732d1acc110&lat=" + weather.coord.lat + "&lon=" + weather.coord.lon + "&cnt=1",
+               url: "http://api.openweathermap.org/data/2.5/uvi/forecast?appid=16cc9a2b8c5cd910ce823125d38d81e0&lat=" + weather.coord.lat + "&lon=" + weather.coord.lon + "&cnt=1",
                method: "GET"
             }).then(function (uvi) {
                var currWeatherUvi = $("<p class='curr-weather-uvi'>").text("UV index: " + uvi[0].value);
