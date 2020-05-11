@@ -19,7 +19,7 @@ $(document).ready(function () {
             var forecastName = $("<h3 class='forecast-name'>").text(forecast.city.name + " - 5 Day Forecast");
             var forecast5Days = $("<div id='forecast-5days'>");
             $("#forecast").append(forecastName, forecast5Days);
-            
+
             var forecastDay1 = $("<div class='day'>");
             var forecastDay2 = $("<div class='day'>");
             var forecastDay3 = $("<div class='day'>");
@@ -27,19 +27,18 @@ $(document).ready(function () {
             var forecastDay5 = $("<div class='day'>");
             forecast5Days.append(forecastDay1, forecastDay2, forecastDay3, forecastDay4, forecastDay5);
             
-            $.ajax({
-               url: "http://api.openweathermap.org/data/2.5/uvi/forecast?appid=68d6dbd51f19629214123398c2229b80&lat=" + forecast.city.coord.lat + "&lon=" + forecast.city.coord.lon + "&cnt=5",
-               method: "GET"
-            }).then(function (uvi) {
-               var currentUvi = $("<div id='current-uvi'>");
-               $("#current-weather").append(currentUvi);
-               var currWeatherUvi = $("<p class='curr-weather-uvi'>").text("UV index: " + uvi[0].value);
-               var currWeatherUvi1 = $("<p class='each-day'>").text("UV index: " + uvi[1].value);
-               var currWeatherUvi2 = $("<p class='each-day'>").text("UV index: " + uvi[2].value);
-               var currWeatherUvi3 = $("<p class='each-day'>").text("UV index: " + uvi[3].value);
-               var currWeatherUvi4 = $("<p class='each-day'>").text("UV index: " + uvi[4].value);
-               var currWeatherUvi5 = $("<p class='each-day'>").text("UV index: " + uvi[5].value);
-               forecastDay1.append(currWeatherUvi1);
+            // $.ajax({
+            //    url: "http://api.openweathermap.org/data/2.5/uvi/forecast?appid=68d6dbd51f19629214123398c2229b80&lat=" + forecast.city.coord.lat + "&lon=" + forecast.city.coord.lon + "&cnt=5",
+            //    method: "GET"
+            // }).then(function (uvi) {
+            //    var currentUvi = $("<div id='current-uvi'>");
+            //    $("#current-weather").append(currentUvi);
+            //    var currWeatherUvi1 = $("<p class='each-day'>").text("UV index: " + uvi[1].value);
+            //    var currWeatherUvi2 = $("<p class='each-day'>").text("UV index: " + uvi[2].value);
+            //    var currWeatherUvi3 = $("<p class='each-day'>").text("UV index: " + uvi[3].value);
+            //    var currWeatherUvi4 = $("<p class='each-day'>").text("UV index: " + uvi[4].value);
+            //    var currWeatherUvi5 = $("<p class='each-day'>").text("UV index: " + uvi[5].value);
+            //    forecastDay1.append(currWeatherUvi1);
             
                var forecastDayDate = $("<p class='each-date'>'").text(moment().add(1, 'day').format('ddd, MM/DD/YY'));
                var forecastDayIcon = $("<img class='weather-icon' src='http://openweathermap.org/img/wn/" + forecast.list[7].weather[0].icon + "@2x.png'>");
@@ -75,7 +74,7 @@ $(document).ready(function () {
                var forecastDayMinTemp = $("<p class='each-day'>'").text("Min: " + forecast.list[39].main.temp + "F");
                var forecastDayHumidity = $("<p class='each-day'>'").text("Humidity: " + forecast.list[39].main.humidity + "%");
                forecastDay5.append(forecastDayDate, forecastDayMaxTemp, forecastDayMinTemp, forecastDayHumidity, currWeatherUvi5, forecastDayIcon);
-            
+            });
          
          // API connection for the Current Weather
          $.ajax({
@@ -83,9 +82,10 @@ $(document).ready(function () {
             method: "GET"
          }).then(function (weather) {
             $.ajax({
-               url: "http://api.openweathermap.org/data/2.5/uvi/forecast?appid=20ee635fd9d6fa368c986732d1acc110&lat=" + weather.coord.lat + "&lon=" + weather.coord.lon + "&cnt=6",
+               url: "http://api.openweathermap.org/data/2.5/uvi/forecast?appid=68d6dbd51f19629214123398c2229b80&lat=" + weather.coord.lat + "&lon=" + weather.coord.lon + "&cnt=1",
                method: "GET"
             }).then(function (uvi) {
+               var currWeatherUvi = $("<p class='curr-weather-uvi'>").text("UV index: " + uvi[0].value);
 
                var currentWeather = $("#current-weather");
                var currentWeatherName = $("<h3 id='current-weather-name'>").text(weather.name + " - Current Weather");
@@ -126,8 +126,6 @@ $(document).ready(function () {
                   $("#jumbotron").attr("style", "background: url(./images/misty.jpg); background-size: cover; background-repeat: no-repeat; background-position: center center");
                }
             });
-            });
-         });
          });
 
       } else {
