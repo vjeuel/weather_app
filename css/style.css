@@ -159,9 +159,9 @@ input {
 }
 
 #prev-city{
-   height: 100%;
+   height: auto;
    display: grid;
-   grid-template-rows: repeat(1, 20rem) ;
+   grid-template-rows: auto;
    grid-template-columns: repeat(auto-fit, minmax(38rem, 1fr));
    grid-gap: 2rem;
    margin-right: 2rem;
@@ -172,8 +172,9 @@ input {
    background-color: rgba(219, 201, 197, 0.5);
    border-radius: 1rem;
    padding: 2rem;
+   height: auto;
    display: grid;
-   grid-template-rows: repeat(4, 1fr);
+   grid-template-rows: repeat(7, 3.5rem);
    grid-template-columns: repeat(2, 1fr);
    grid-gap: 1rem;
 }
@@ -242,6 +243,7 @@ input {
    grid-template-rows: auto auto;
    grid-template-columns: 70% 30%;
    grid-column-gap: 2rem;
+   align-items: center;
 }
 
 #current-weather p {
@@ -249,14 +251,15 @@ input {
 }
 
 #current-icon {
-   grid-area: 1 / 2 / 3 / 3;
-   display: grid;
+   grid-row: 1 / 1;
+   grid-column: 2 / 3;
+   /* display: grid; */
 }
 
-.current-weather-icon {
+/* .current-weather-icon {
    justify-self: start;
    align-self: center;
-}
+} */
 
 
 /***************** FOOTER *****************/
