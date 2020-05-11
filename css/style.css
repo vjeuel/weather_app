@@ -170,12 +170,25 @@ input {
 
 #prev-searches {
    background-color: rgba(219, 201, 197, 0.5);
-   border-radius: 2rem;
+   border-radius: 1rem;
    padding: 2rem;
    display: grid;
-   grid-template-columns: 1fr, 1fr;
+   grid-template-rows: repeat(4, 1fr);
+   grid-template-columns: repeat(2, 1fr);
+   grid-gap: 1rem;
 }
 
+#prev-searches button {
+   font-family: 'Quicksand', sans-serif;
+   font-size: 1.5rem;
+   background-color: var(--p2);
+   color: var(--bl);
+   height: 100%;
+   border-radius: 1rem;
+   border: none;
+   box-shadow: -2px -2px 8px var(--wt),
+            2px 2px 8px var(--bl);
+}
 
 /***************** FORECAST 5 DAY *****************/
 #forecast {

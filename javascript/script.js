@@ -123,13 +123,12 @@ $(document).ready(function () {
    if (localStorage.getItem('cities')) {
       var indexCity = (JSON.parse(localStorage.getItem('cities')).length -1)
       chooseCity(JSON.parse(localStorage.getItem('cities'))[indexCity])
-      for (let i = 0; i < 5; i++) {
-      var searchedCity = $('<button>')
-      searchedCity.text(JSON.parse(localStorage.getItem('cities'))[i])         
-      $('#prev-searches').append(searchedCity)
+      for (let i = 0; i < 8; i++) {
+         var searchedCity = $('<button>')
+         searchedCity.text(JSON.parse(localStorage.getItem('cities'))[i])         
+         $('#prev-searches').append(searchedCity)
       };
    };
-
 
    $("#form-submit").on("submit", function (event) {
       event.preventDefault()
@@ -142,60 +141,10 @@ $(document).ready(function () {
       }
       var city = $("#search-city").val();
       cityArr.push(city)
-      //rendering upon button click
-      /*for (let i = 0; i < 5; i++) {
-         console.log(cityArr[i]);
-         var newEl = $('<button>')
-         newEl.text(cityArr[i])         
-         $('#prev-searches').append(newEl)
-      }*/
       
       localStorage.setItem('cities', JSON.stringify(cityArr))
       
-      
-      /*if (window.localStorage.getItem("cityArr") === null) {
-         var city = $("#search-city").val();
-         var cityArr = [city];
-         window.localStorage.setItem("cityArr", JSON.stringify(cityArr));
-      } else {
-         var city = $("#search-city").val()
-         window.localStorage.setItem(cityArr, JSON.stringify(city));
-
-         var cityGet = window.localStorage.getItem(cityArr);
-
-         cityArr.push(city);
-
-         window.localStorage.getItem("city", JSON.parse(cityGet))
-         // window.localStorage.getItem("cityValueArr");
-         // var cityValue2 = $("#search-city").val();
-         // cityValueArr2.push(cityValue2);
-         // window.localStorage.setItem("cityValueArr", JSON.stringify(cityValueArr2));
-         // window.localStorage.getItem("cityValueArr", JSON.parse(cityValueArr2));
-         $("#prev-searches").html("<p>" + city);
-      };*/
-      //console.log(city);
-      
       chooseCity(city);
    });
-   //$('#search-button').click(chooseCity());
-//    var testObject = ["apple"];
-
-//    // Put the object into storage
-// localStorage.setItem('testObject', JSON.stringify(testObject));
-
-// // Retrieve the object from storage
-// var retrievedObject = localStorage.getItem('testObject');
-// testObject.push("rat", "mouse")
-// localStorage.getItem('testObject', JSON.parse(retrievedObject));
-// // console.log('retrievedObject: ', JSON.parse(retrievedObject));
-// console.log(testObject[0]);
-   
-// $("#prev-searches").prepend("<p>" + testObject);
    
 });
-   
-
-   
-   // unsplash API 
-   // r60tWdxsPJXnDDxzIGlxeQDB_Q4WocIaJvb0t8pD9VI
-   // ajzNPOf3ZdKuBm3kUN7YnLxRbQFhWE_iMJEXN1n1XhI
