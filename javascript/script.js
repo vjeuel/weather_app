@@ -82,7 +82,7 @@ $(document).ready(function () {
             method: "GET"
          }).then(function (weather) {
             $.ajax({
-               url: "http://api.openweathermap.org/data/2.5/uvi/forecast?appid=68d6dbd51f19629214123398c2229b80&lat=" + weather.coord.lat + "&lon=" + weather.coord.lon + "&cnt=1",
+               url: "http://api.openweathermap.org/data/2.5/uvi/forecast?appid=20ee635fd9d6fa368c986732d1acc110&lat=" + weather.coord.lat + "&lon=" + weather.coord.lon + "&cnt=1",
                method: "GET"
             }).then(function (uvi) {
                var currWeatherUvi = $("<p class='curr-weather-uvi'>").text("UV index: " + uvi[0].value);
