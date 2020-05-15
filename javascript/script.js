@@ -77,28 +77,89 @@ $(document).ready(function () {
                },
                url: "https://api.openuv.io/api/v1/uv?lat=" + weather.coord.lat + "&lng=" + weather.coord.lon,
                success: function (uvi) {
-                  var currWeatherUvi = $("<p class='curr-weather-uvi'>").text("UV index: " + uvi.result.uv);
-                  var currWeatherUviMax = $("<p class='curr-weather-uvi'>").text("UV index max: " + uvi.result.uv_max);
-                  //handle successful response
-                  console.log(uvi);
-               
+                  
                   var currentWeather = $("#current-weather");
                   var currentWeatherName = $("<h3 id='current-weather-name'>").text(weather.name + " - Current Weather");
                   currentWeather.append(currentWeatherName);
-               
+                  
                   var currentData = $("<div id='current-data'>");
                   currentWeather.append(currentData);
                   var currWeatherTemp = $("<p class='curr-weather-temp'>").text("Current Temperature: " + weather.main.temp + "F");
                   var currWeatherFeel = $("<p class='curr-weather-temp'>").text("Feels like: " + weather.main.feels_like + "F");
                   var currWeatherHumid = $("<p class='curr-weather-hum'>").text("Current Humidity: " + weather.main.humidity + "%");
                   var currWeatherWind = $("<p class='curr-weather-wind'>").text("Current Wind Speed: " + weather.wind.speed + "m/h");
+                  
+                  //UV Index
+                  var currWeatherUvi = $("<p class='curr-weather-uvi'>").text("UV index: ");
+                  var currWeatherUviMax = $("<p class='curr-weather-uvi'>").text("UV index max: ");                  
                   currentData.append(currWeatherTemp, currWeatherFeel, currWeatherHumid, currWeatherWind, currWeatherUvi, currWeatherUviMax);
-               
+                  
+                  // UV Index Color
+                  var currWeatherUvSpan = $("<span class='curr-weather-uvi-icon'>").text(+ uvi.result.uv);
+                  currWeatherUvSpan.appendTo(currWeatherUvi);
+                  
+                  var currWeatherUvSpanMax = $("<span class='curr-weather-uvi-icon'>").text(+ uvi.result.uv_max);
+                  currWeatherUvSpanMax.appendTo(currWeatherUviMax);
+
+                  var uvColor = uvi.result.uv;
+                  if (uvColor < 2.999) {
+                     currWeatherUvSpan.addClass("uv-index-low")
+                  } else if (uvColor > 3 && uvColor < 5.99) {
+                     currWeatherUvSpan.addClass("uv-index-medium")
+                  } else if (uvColor > 6 && uvColor < 7.99) {
+                     currWeatherUvSpan.addClass("uv-index-high")
+                  } else if (uvColor > 8 && uvColor < 10.99) {
+                     currWeatherUvSpan.addClass("uv-index-very-high")
+                  } else if (uvColor > 11) {
+                     currWeatherUvSpan.addClass("uv-index-extreme")
+                  };   
+
+                  var uvColorMax = uvi.result.uv_max;
+                  if (uvColorMax < 2.999) {
+                     currWeatherUvSpanMax.addClass("uv-index-low")
+                  } else if (uvColorMax > 3 && uvColorMax < 5.99) {
+                     currWeatherUvSpanMax.addClass("uv-index-medium")
+                  } else if (uvColorMax > 6 && uvColorMax < 7.99) {
+                     currWeatherUvSpanMax.addClass("uv-index-high")
+                  } else if (uvColorMax > 8 && uvColorMax < 10.99) {
+                     currWeatherUvSpanMax.addClass("uv-index-very-high")
+                  } else if (uvColorMax > 11) {
+                     currWeatherUvSpanMax.addClass("uv-index-extreme")
+                  };   
+
+
+
+
+                  // Weather Icon
                   var currentIcon = $("<div id='current-icon'>");
                   currentWeather.append(currentIcon);
                   var currWeatherIcon = $("<img class='current-weather-icon' src='http://openweathermap.org/img/wn/" + weather.weather[0].icon + "@2x.png'>");
                   currentIcon.append(currWeatherIcon);
+                  
+                  
+                  // var uvIcon;
 
+                  // console.log(uvIcon);
+                  
+                  // var currWeatherUvIcon = $("<img class='curr-weather-uvi-icon' src='./images/uvIndexVeryHigh.png'>");
+                  // if (uvi.result.uv > 0 && uvi.result.uv < 2.999) {
+                  //    currWeatherUvIcon.attr("style", "background: url(./images/uvIndexLow.png)");
+                  // } else if (uvi.result.uv > 3 && uvi.result.uv < 5.99) {
+                  //    currWeatherUvIcon.attr("style", "background: url(./images/uvIndexMedium.png)");
+                  // } else if (uvi.result.uv > 6 && uvi.result.uv < 7.99) {
+                     //    currWeatherUvIcon.attr("style", "background: url(./images/uvIndexHigh.png)");
+                     // } else if (uvi.result.uv > 8 && uvi.result.uv < 10.99) {
+                  //    currWeatherUvIcon.attr("style", "background: url(./images/uvIndexVeryHigh.png)");
+                  // } else if (uvi.result.uv > 11) {
+                     //    currWeatherUvIcon.attr("style", "background: url(./images/uvIndexExtreme.png)");
+                     // };   
+                     
+                     
+                  
+                  // console.log(currWeatherUvIcon);
+                  
+
+                  
                   // Just a tester to check the pictures changing accordingly to the weather
                   // weather.weather[0].description = "clear sky";
                   // weather.weather[0].description = "scattered clouds";

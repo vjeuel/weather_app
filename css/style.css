@@ -253,13 +253,39 @@ input {
 #current-icon {
    grid-row: 1 / 1;
    grid-column: 2 / 3;
-   /* display: grid; */
 }
 
-/* .current-weather-icon {
-   justify-self: start;
-   align-self: center;
-} */
+.uv-index-low {
+   background-color: #97BF04;
+   padding: 0.25rem 2rem;
+   border-radius: 1rem;
+}
+
+.uv-index-medium {
+   background-color: #FFCC00;
+   padding: 0.25rem 2rem;
+   border-radius: 1rem;
+}
+
+.uv-index-high {
+   background-color: #F28705;
+   padding: 0.25rem 2rem;
+   border-radius: 1rem;
+}
+
+.uv-index-very-high {
+   background-color: #BB1B0D;
+   color: var(--wt);
+   padding: 0.25rem 2rem;
+   border-radius: 1rem;
+}
+
+.uv-index-extreme {
+   background-color: #6D3271;
+   color: var(--wt);
+   padding: 0.25rem 2rem;
+   border-radius: 1rem;
+}
 
 
 /***************** FOOTER *****************/
