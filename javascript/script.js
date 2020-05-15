@@ -127,38 +127,12 @@ $(document).ready(function () {
                      currWeatherUvSpanMax.addClass("uv-index-extreme")
                   };   
 
-
-
-
+                  
                   // Weather Icon
                   var currentIcon = $("<div id='current-icon'>");
                   currentWeather.append(currentIcon);
                   var currWeatherIcon = $("<img class='current-weather-icon' src='http://openweathermap.org/img/wn/" + weather.weather[0].icon + "@2x.png'>");
                   currentIcon.append(currWeatherIcon);
-                  
-                  
-                  // var uvIcon;
-
-                  // console.log(uvIcon);
-                  
-                  // var currWeatherUvIcon = $("<img class='curr-weather-uvi-icon' src='./images/uvIndexVeryHigh.png'>");
-                  // if (uvi.result.uv > 0 && uvi.result.uv < 2.999) {
-                  //    currWeatherUvIcon.attr("style", "background: url(./images/uvIndexLow.png)");
-                  // } else if (uvi.result.uv > 3 && uvi.result.uv < 5.99) {
-                  //    currWeatherUvIcon.attr("style", "background: url(./images/uvIndexMedium.png)");
-                  // } else if (uvi.result.uv > 6 && uvi.result.uv < 7.99) {
-                     //    currWeatherUvIcon.attr("style", "background: url(./images/uvIndexHigh.png)");
-                     // } else if (uvi.result.uv > 8 && uvi.result.uv < 10.99) {
-                  //    currWeatherUvIcon.attr("style", "background: url(./images/uvIndexVeryHigh.png)");
-                  // } else if (uvi.result.uv > 11) {
-                     //    currWeatherUvIcon.attr("style", "background: url(./images/uvIndexExtreme.png)");
-                     // };   
-                     
-                     
-                  
-                  // console.log(currWeatherUvIcon);
-                  
-
                   
                   // Just a tester to check the pictures changing accordingly to the weather
                   // weather.weather[0].description = "clear sky";
