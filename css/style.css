@@ -179,7 +179,7 @@ input {
    grid-gap: 1rem;
 }
 
-#prev-searches button {
+#prev-searches input {
    font-family: 'Quicksand', sans-serif;
    font-size: 1.5rem;
    background-color: var(--p2);
@@ -189,6 +189,16 @@ input {
    border: none;
    box-shadow: -2px -2px 8px var(--wt),
             2px 2px 8px var(--bl);
+}
+
+#prev-searches input:hover {
+   background-color: var(--p1);
+   color: var(--wt);
+}
+
+#prev-searches input:active {
+   background-color: var(--s2);
+   color: var(--wt);
 }
 
 /***************** FORECAST 5 DAY *****************/
@@ -248,6 +258,7 @@ input {
 
 #current-weather p {
    margin-bottom: 1rem;
+   padding: 0.25rem 0;
 }
 
 #current-icon {
