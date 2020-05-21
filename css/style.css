@@ -188,7 +188,7 @@ input {
    border-radius: 1rem;
    border: none;
    box-shadow: -2px -2px 8px var(--wt),
-            2px 2px 8px var(--bl);
+   2px 2px 8px var(--bl);
 }
 
 #prev-searches input:hover {
@@ -199,6 +199,20 @@ input {
 #prev-searches input:active {
    background-color: var(--s2);
    color: var(--wt);
+}
+
+#clear-button {
+   font-family: 'Quicksand', sans-serif;
+   font-size: 1.5rem;
+   background-color: var(--p1);
+   color: var(--wt);
+   height: 100%;
+   border-radius: 1rem;
+   border: none;
+   box-shadow: -2px -2px 8px var(--wt),
+   2px 2px 8px var(--bl);
+   grid-column-start: 1;   
+   grid-column-end: span 2;
 }
 
 /***************** FORECAST 5 DAY *****************/

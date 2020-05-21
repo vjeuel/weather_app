@@ -183,24 +183,9 @@ $(document).ready(function () {
       // searchedButton.on("click", chooseCity);
    };
 
-   function buttons() {
-      var getCities = JSON.parse(localStorage.getItem('cities'));
-      
-      getCities.forEach(function (city) {
-         var createButtons = $("<input>").attr({
-            type: "button",
-            value: city
-         });
+  
 
-         $("#prev-searches").append(createButtons);
-
-         createButtons.on("click", function (event) {
-            event.preventDefault();
-            chooseCity(city);
-         });
-      });
-   };
-   buttons();
+   
 
    
    $("#form-submit").on("submit", function (event) {
@@ -220,4 +205,31 @@ $(document).ready(function () {
       
       chooseCity(city);
    });
+
+    function buttons() {
+      var getCities = JSON.parse(localStorage.getItem('cities'));
+      
+      getCities.forEach(function (city) {
+         var createButtons = $("<input>").attr({
+            type: "button",
+            value: city
+         });
+
+         $("#prev-searches").append(createButtons);
+
+         createButtons.on("click", function (event) {
+            event.preventDefault();
+            chooseCity(city);
+         });
+      });
+   };
+   buttons();
+
+   var clearButton = $("<button id='clear-button'>delete cities</button>")
+   $("#prev-searches").append(clearButton);
+   clearButton.on("click", function () {
+      localStorage.clear();
+      location.reload(true);
+
+   })
 });
