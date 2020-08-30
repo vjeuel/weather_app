@@ -34,7 +34,3 @@ Notice that when you choose the city and accordingly to the weather in that city
 - Mist (misty city picture)
 
 So, I encourage you to find cities around the world that have a different weather condition so you can see the background picture changes.
-
-
-## **Future Additions**
-- There is a section that shows the last 8 searched cities, in the future I would like to make them clickable buttons that takes you to that city's weather.

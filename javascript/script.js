@@ -171,21 +171,7 @@ $(document).ready(function () {
    if (window.localStorage.getItem('cities')) {
       var indexCity = (JSON.parse(window.localStorage.getItem('cities')).length -1)
       chooseCity(JSON.parse(window.localStorage.getItem('cities'))[indexCity])
-
-      // searchedButton.on("click", chooseCity);
-      // for (let i = 0; i < 14; i++) {
-      //    var searchedButton = $("<input type='button'>")
-      //    searchedButton.text(JSON.parse(window.localStorage.getItem('cities'))[i]) 
-         
-      //    $('#prev-searches').append(searchedButton)
-         
-      // };
-      // searchedButton.on("click", chooseCity);
    };
-
-  
-
-   
 
    
    $("#form-submit").on("submit", function (event) {
@@ -230,6 +216,5 @@ $(document).ready(function () {
    clearButton.on("click", function () {
       localStorage.clear();
       location.reload(true);
-
    })
 });
